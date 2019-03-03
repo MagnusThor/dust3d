@@ -31,12 +31,42 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update; fi
   #- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install gcc-4.9 g++-4.9; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt install cmake; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install m4; fi
+
+  # (Mac) Install Qt5
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then HOMEBREW_VERBOSE_USING_DOTS=1 brew reinstall --verbose qt; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="/usr/local/opt/qt/bin:$(brew --prefix)/bin:$PATH"; fi
+
+  # (Linux) Install Qt5
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install qt59base qt59tools --force-yes; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then source /opt/qt59/bin/qt59-env.sh; fi
 
   # (Linux) Install CGAL
   # (Linux) First install a maybe old version CGAL to resolve dependencies
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install libcgal-dev; fi
+  #- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install libcgal-dev; fi
 
-  # (Linux) Build from source
+  # (Linux) Install Boost
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install libboost-all-dev; fi
+
+  # (Linux) Build GMP from source
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget https://gmplib.org/download/gmp/gmp-6.1.2.tar.xz; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then tar xf gmp-6.1.2.tar.xz; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd gmp-6.1.2.tar.xz; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./configure; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then make; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo make install; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd ../; fi
+
+  # (Linux) Build MPFR from source
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget https://www.mpfr.org/mpfr-current/mpfr-4.0.2.tar.xz; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then tar xf mpfr-4.0.2.tar.xz; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd mpfr-4.0.2.tar.xz; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./configure; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then make; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo make install; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd ../; fi
+
+  # (Linux) Build CGAL from source
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget https://github.com/CGAL/cgal/releases/download/releases/CGAL-4.13/CGAL-4.13.zip; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then unzip CGAL-4.13.zip; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd CGAL-4.13; fi
@@ -46,14 +76,6 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then make; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo make install; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd ../../; fi
-
-  # (Mac) Install Qt5
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then HOMEBREW_VERBOSE_USING_DOTS=1 brew reinstall --verbose qt; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="/usr/local/opt/qt/bin:$(brew --prefix)/bin:$PATH"; fi
-
-  # (Linux) Install Qt5
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install qt59base qt59tools --force-yes; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then source /opt/qt59/bin/qt59-env.sh; fi
 
 script:
 

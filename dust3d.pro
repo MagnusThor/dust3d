@@ -430,14 +430,14 @@ unix:!macx {
 	GMP_LIBNAME = gmp
 	MPFR_LIBNAME = mpfr
 	CGAL_LIBNAME = CGAL
-	BOOST_INCLUDEDIR = /usr/include/x86_64-linux-gnu
+	BOOST_INCLUDEDIR = /usr/local/include
 	CGAL_INCLUDEDIR = /usr/local/include
 	CGAL_BUILDINCLUDEDIR = /usr/local/include
 	CGAL_LIBDIR = /usr/local/lib
-	GMP_INCLUDEDIR = /usr/include/x86_64-linux-gnu
-	GMP_LIBDIR = /usr/lib/x86_64-linux-gnu
-	MPFR_INCLUDEDIR = /usr/include/x86_64-linux-gnu
-	MPFR_LIBDIR = /usr/lib/x86_64-linux-gnu
+	GMP_INCLUDEDIR = /usr/local/include
+	GMP_LIBDIR = /usr/local/lib
+	MPFR_INCLUDEDIR = /usr/local/include
+	MPFR_LIBDIR = /usr/local/lib
 }
 
 INCLUDEPATH += $$BOOST_INCLUDEDIR
