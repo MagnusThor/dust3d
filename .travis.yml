@@ -42,7 +42,13 @@ install:
   #- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install libcgal-dev; fi
 
   # (Linux) Install Boost
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install libboost-all-dev; fi
+  #- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install libboost-all-dev; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget https://dl.bintray.com/boostorg/release/1.67.0/source/boost_1_67_0.tar.bz2; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then tar --bzip2 -xf boost_1_67_0.tar.bz2; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd boost_1_67_0; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./bootstrap.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./b2 install; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd ../; fi
 
   # (Linux) Build GMP from source
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget https://gmplib.org/download/gmp/gmp-6.1.2.tar.xz; fi
