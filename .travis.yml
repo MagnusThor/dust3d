@@ -51,7 +51,7 @@ install:
   # (Linux) Build GMP from source
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget https://gmplib.org/download/gmp/gmp-6.1.2.tar.xz; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then tar xf gmp-6.1.2.tar.xz; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd gmp-6.1.2.tar.xz; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd gmp-6.1.2; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./configure; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then make; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo make install; fi
@@ -60,7 +60,7 @@ install:
   # (Linux) Build MPFR from source
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget https://www.mpfr.org/mpfr-current/mpfr-4.0.2.tar.xz; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then tar xf mpfr-4.0.2.tar.xz; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd mpfr-4.0.2.tar.xz; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd mpfr-4.0.2; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./configure; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then make; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo make install; fi
