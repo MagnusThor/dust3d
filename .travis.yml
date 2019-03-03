@@ -47,7 +47,7 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then tar --bzip2 -xf boost_1_67_0.tar.bz2; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd boost_1_67_0; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./bootstrap.sh; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./b2 install; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo ./b2 install; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd ../; fi
 
   # (Linux) Build GMP from source
